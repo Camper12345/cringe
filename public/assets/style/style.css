@@ -10,6 +10,21 @@ body {
     background-image: url('/assets/img/newcat.jpg');
 }
 
+#cat {
+    margin: auto;
+    opacity: 0.5;
+    animation: spin 5s infinite;
+}
+
+#cat:hover {
+    margin: auto;
+    opacity: 1;
+}
+
+@keyframes spin {
+  50% {transform: rotate(180deg);}
+}
+
 .bg-overlay {
     background: linear-gradient(180deg, #F0F0F0A0 0%, transparent 100%);
 
