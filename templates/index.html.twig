@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Camper2012's little corner of the internet</title>
+        <meta charset="utf-8">
+        <link rel="icon" type="image/x-icon" href="/assets/newcat.ico">
+        <link rel="stylesheet" href="/assets/style/style.css">
+        <script src="/assets/js/jquery.js"></script>
+    </head>
+
+    <body>
+        <div class="text-block text">
+            <h1>Every day we stray further from God.</h1>
+            <p>This page has been visited <span id="visitCounter">some</span> times.</p>
+        </div>   
+
+        <div class="text-block visit-log-block text" id="visitLog">
+            <div class="visit-log-entry">
+                <p class="name">name</p>
+                <p class="date">date</p>
+            </div>
+        </div>   
+
+        <div class="bg-overlay"></div>
+        <script>
+            async function updateVisits() {
+                let visits = await (await fetch('/api/visits')).json();
+                
+                document.getElementById('visitCounter').innerText = visits.count;
+
+                let log = '';
+
+                visits.visits.forEach((item) => {
+                    let entry = '<p class="name ' + (!item.user_name ? 'robot' : '') + '">' + (item.user_name ?? 'Robot') + '</p>\n';
+                    entry += '<p class="date">' + item.date + '</p>\n';
+
+                    log += '<div class="visit-log-entry">\n' + entry + '</div>';
+                });
+
+                document.getElementById('visitLog').innerHTML = log;
+            }
+
+            updateVisits();
+            setInterval(function(){
+                updateVisits();
+            }, 5000);
+        </script>
+
+        {% include 'auth_bar.html.twig' %}
+    </body>
+</html>
