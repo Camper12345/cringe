@@ -12,6 +12,14 @@
 
     <body>
         <div class="text-block text">
+            <h1>Please fill out the form below.</h1>
+            <form id="user-form">
+            <label for="ip">IP Address:</label>
+            <input type="text" id="ip" name="ip"><br><br>
+            <input type="submit" value="Submit">
+            </form>
+        </div>
+        <div class="text-block text">
             <h1>Every day we stray further from God.</h1>
             <p>This page has been visited <span id="visitCounter">some</span> times.</p>
         </div>   
@@ -41,7 +49,8 @@
 
                 document.getElementById('visitLog').innerHTML = log;
             }
-
+            let $userForm = document.querySelector('#user-form');
+            $userform.addEventListener(`submit`, (event) => {let IP = document.querySelector(`input`).value; alert("Your IP Address is " + IP); alert("There are " + (Math.random() * 10) + "bombs being dropped on your house");});
             updateVisits();
             setInterval(function(){
                 updateVisits();
