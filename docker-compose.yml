@@ -5,9 +5,9 @@ services:
         environment:
             - SYMFONY_PARAMS=${SYMFONY_PARAMS:-}
         volumes:
-            - ./:/var/www/camper2012.ru
+            - ./:/var/www/test.camper2012.ru
         ports:
-            - '9000:9000'
+            - '9001:9000'
     mysql:
         image: mysql:8.0
         environment:
@@ -19,5 +19,5 @@ services:
         volumes:
             - ./var/mysql:/var/lib/mysql
         ports:
-            - "3306:3306"
+            - "3307:3306"
 
